@@ -3,6 +3,7 @@ using GodotUtils;
 
 namespace Template.Platformer2D.Retro;
 
+// Entity
 public abstract partial class Entity : CharacterBody2D
 {
     protected AnimatedSprite2D Sprite;
