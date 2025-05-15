@@ -5,38 +5,37 @@ namespace Template.Platformer2D.Retro;
 
 public partial class Player
 {
-    private PlayerJumpVars _jumpVars { get; } = new();
+    private readonly PlayerJumpVars _jumpVars = new();
 
     private State Jump()
     {
-        State state = new(nameof(Jump));
-
-        state.Enter = () =>
-        {
-            _jumpVars.HoldingKey = true;
-            _jumpVars.LossBuildUp = 0;
-            Velocity -= new Vector2(0, _jumpVars.Force);
-        };
-
-        state.Update = delta =>
-        {
-            if (Input.IsActionPressed(InputActions.Jump) && _jumpVars.HoldingKey)
+        State state = new(nameof(Jump)) { 
+            Enter = () =>
             {
-                _jumpVars.LossBuildUp += _jumpVars.Loss;
-                Velocity -= new Vector2(
-                    x: 0,
-                    y: Mathf.Max(0, _jumpVars.Force - _jumpVars.LossBuildUp));
-            }
-
-            if (Input.IsActionJustReleased(InputActions.Jump))
+                _jumpVars.HoldingKey = true;
+                _jumpVars.LossBuildUp = 0;
+                Velocity -= new Vector2(0, _jumpVars.Force);
+            },
+            Update = _ =>
             {
-                _jumpVars.HoldingKey = false;
-            }
+                if (Input.IsActionPressed(InputActions.Jump) && _jumpVars.HoldingKey)
+                {
+                    _jumpVars.LossBuildUp += _jumpVars.Loss;
+                    Velocity -= new Vector2(
+                        x: 0,
+                        y: Mathf.Max(0, _jumpVars.Force - _jumpVars.LossBuildUp));
+                }
 
-            // Transitions
-            if (IsOnFloor())
-            {
-                SwitchState(Idle());
+                if (Input.IsActionJustReleased(InputActions.Jump))
+                {
+                    _jumpVars.HoldingKey = false;
+                }
+
+                // Transitions
+                if (IsOnFloor())
+                {
+                    SwitchState(Idle());
+                }
             }
         };
 

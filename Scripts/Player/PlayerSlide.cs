@@ -1,9 +1,8 @@
-using GodotUtils;
-
 namespace Template.Platformer2D.Retro;
 
 public partial class Player
 {
+/*
     private State Slide()
     {
         State state = new(nameof(Slide));
@@ -13,12 +12,13 @@ public partial class Player
 
         };
 
-        state.Update = delta =>
+        state.Update = _ =>
         {
 
         };
 
         return state;
     }
+*/
 }
 

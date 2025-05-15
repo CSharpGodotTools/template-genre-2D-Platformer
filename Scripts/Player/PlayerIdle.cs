@@ -7,23 +7,22 @@ public partial class Player
 {
     private State Idle()
     {
-        State state = new(nameof(Idle));
-
-        state.Enter = () =>
-        {
-            Sprite.Play("idle");
-        };
-
-        state.Update = delta =>
-        {
-            if (Input.IsActionJustPressed(InputActions.Jump) && IsOnFloor())
+        State state = new(nameof(Idle)) 
+        { 
+            Enter = () =>
             {
-                SwitchState(Jump());
-            }
-
-            else if (Input.IsActionJustPressed(InputActions.MoveDown) && GetFloorAngle() > 0)
+                Sprite.Play("idle");
+            },
+            Update = _ =>
             {
+                if (Input.IsActionJustPressed(InputActions.Jump) && IsOnFloor())
+                {
+                    SwitchState(Jump());
+                }
+                else if (Input.IsActionJustPressed(InputActions.MoveDown) && GetFloorAngle() > 0)
+                {
 
+                }
             }
         };
 
