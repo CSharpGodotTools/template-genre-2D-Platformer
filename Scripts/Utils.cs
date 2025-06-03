@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Template.Platformer2D.Retro;
+namespace __TEMPLATE__.Platformer2D.Retro;
 
 public static class Utils
 {

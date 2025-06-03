@@ -1,4 +1,4 @@
-namespace Template.Platformer2D.Retro;
+namespace __TEMPLATE__.Platformer2D.Retro;
 
 public partial class Player
 {
